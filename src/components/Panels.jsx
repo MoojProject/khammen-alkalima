@@ -19,7 +19,8 @@ export default function Panels({
   setShowInfoPanel,
   gameStatus,
   answerWord,
-  isMultiplayer = false, // ← جديد
+  isMultiplayer = false,
+  opponentFinished = false,
 }) {
   const [timer, setTimer] = useState("00:00:00");
 
@@ -64,6 +65,27 @@ export default function Panels({
         )}
 
         {/* في multiplayer نعرض زر العودة للرئيسية */}
+        {isMultiplayer && !opponentFinished && (
+          <div style={{
+            background: '#f5f3ff',
+            borderRadius: 10,
+            padding: '12px 16px',
+            marginBottom: 12,
+            fontFamily: 'Cairo, sans-serif',
+            fontSize: 13,
+            fontWeight: 700,
+            color: '#7c6caa',
+            textAlign: 'center',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            gap: 8,
+          }}>
+            <span style={{ fontSize: 16 }}>⏳</span>
+            بانتظار صاحبك...
+          </div>
+        )}
+
         {isMultiplayer && (
           <a href="/" style={{
             display: "inline-block",

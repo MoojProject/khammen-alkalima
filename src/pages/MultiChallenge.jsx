@@ -18,6 +18,7 @@ export default function MultiChallenge() {
   const [secretWord, setSecretWord]       = useState("");
   const [roundResult, setRoundResult]     = useState(null);
   const [waitingRematch, setWaitingRematch] = useState(false);
+  const [opponentFinished, setOpponentFinished] = useState(false);
 
   useEffect(() => {
     socketRef.current = io(SERVER_URL, { transports: ["websocket"] });
@@ -33,6 +34,8 @@ export default function MultiChallenge() {
     });
 
     // نتيجة الجولة من السيرفر
+    socket.on("game:opponentFinished", () => setOpponentFinished(true));
+
     socket.on("round:result", (result) => {
       setRoundResult(result);
       setWaitingRematch(false);
@@ -71,6 +74,6 @@ export default function MultiChallenge() {
   if (status === "idle"    || status === "error") return <MultiLobby onCreateRoom={createRoom} onJoinRoom={joinRoom} error={error} />;
   if (status === "waiting")                        return <MultiWaiting roomCode={roomCode} />;
   if (status === "joined")                         return <MultiSecretWord onWordSubmit={submitWord} />;
-  if (status === "playing")                        return <MultiGame secretWord={secretWord} socket={socketRef.current} isMultiplayer />;
+  if (status === "playing")                        return <MultiGame secretWord={secretWord} socket={socketRef.current} isMultiplayer opponentFinished={opponentFinished} />;
   if (status === "result")                         return <MultiResult result={roundResult} onRematch={requestRematch} waitingRematch={waitingRematch} />;
 }

@@ -29,7 +29,7 @@ function buildEmptyEvaluations() {
   return Array.from({ length: 6 }, () => Array.from({ length: 5 }, () => null));
 }
 
-export default function MultiGame({ secretWord, socket, isMultiplayer = false }) {
+export default function MultiGame({ secretWord, socket, isMultiplayer = false, opponentFinished = false }) {
   const [alertText, setAlertText]             = useState("");
   const alertTimerRef                          = useRef(null);
   const [showResultPanel, setShowResultPanel]  = useState(false);
@@ -208,6 +208,7 @@ export default function MultiGame({ secretWord, socket, isMultiplayer = false })
         </div>
         <Panels
           isMultiplayer
+          opponentFinished={opponentFinished}
           showResultPanel={showResultPanel}
           showInfoPanel={showInfoPanel}
           setShowResultPanel={setShowResultPanel}
