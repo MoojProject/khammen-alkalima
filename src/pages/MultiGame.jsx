@@ -29,7 +29,7 @@ function buildEmptyEvaluations() {
   return Array.from({ length: 6 }, () => Array.from({ length: 5 }, () => null));
 }
 
-export default function MultiGame({ secretWord, socket }) {
+export default function MultiGame({ secretWord, socket, isMultiplayer = false }) {
   const [alertText, setAlertText]             = useState("");
   const alertTimerRef                          = useRef(null);
   const [showResultPanel, setShowResultPanel]  = useState(false);
@@ -67,7 +67,7 @@ export default function MultiGame({ secretWord, socket }) {
         if (pos !== 5 || row > 5) return;
         const guess = rowWord.join("");
 
-        if (!searchDict(guess)) { alerting("كلمة ليست فى القاموس"); return; }
+        if (!isMultiplayer && !searchDict(guess)) { alerting("كلمة ليست فى القاموس"); return; }
 
         const answer   = [...secretWord];
         const guessArr = [...rowWord];
@@ -191,9 +191,10 @@ export default function MultiGame({ secretWord, socket }) {
         onHowToPlay={() => setShowInfoPanel(true)}
         onContact={() => {}}
       />
-      <div className="title" style={{ opacity: fadeBackground ? "60%" : "100%" }}>
+
+      <div className="title" style={{ opacity: fadeBackground ? '60%' : '100%' }}>
         <h1>
-          خمّن كلمة صاحبك{" "}
+          خمّن كلمة صاحبك{' '}
           <i id="info" className="material-icons"
             onClick={() => { setShowInfoPanel(true); setShowResultPanel(false); }}>
             info_outline

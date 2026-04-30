@@ -58,7 +58,7 @@ img{
 /* =========================
    Title
 ========================= */
-.title{ margin-top: 16px; }
+.title{ margin-top: 10px; }
 .title p{ color:#bab3b3; }
 .title i{ font-size: 26px; }
 .title i:hover{ color: rgb(160, 55, 201); }
@@ -541,7 +541,7 @@ img{
 
 @media (max-width: 420px){
   .title{ margin-top: 8px; }
-  .GameBoard{ margin-top: -24px; }
+  .GameBoard{ margin-top: -8px; }
 }
 
 /* احترام تقليل الحركة */

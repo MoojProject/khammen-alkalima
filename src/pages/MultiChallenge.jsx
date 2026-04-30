@@ -71,6 +71,6 @@ export default function MultiChallenge() {
   if (status === "idle"    || status === "error") return <MultiLobby onCreateRoom={createRoom} onJoinRoom={joinRoom} error={error} />;
   if (status === "waiting")                        return <MultiWaiting roomCode={roomCode} />;
   if (status === "joined")                         return <MultiSecretWord onWordSubmit={submitWord} />;
-  if (status === "playing")                        return <MultiGame secretWord={secretWord} socket={socketRef.current} />;
+  if (status === "playing")                        return <MultiGame secretWord={secretWord} socket={socketRef.current} isMultiplayer />;
   if (status === "result")                         return <MultiResult result={roundResult} onRematch={requestRematch} waitingRematch={waitingRematch} />;
 }

@@ -1,12 +1,36 @@
 import { useState } from "react";
 import Header from "../components/Header.jsx";
 import playersImg from "../assets/players.png";
-import ArabicDict from "../Dictionary.js";
 import "../MultiChallengePage.css";
 
-function isValidWord(word) {
-  if (!word || word.length !== 5) return false;
-  return (ArabicDict[word[0]] || []).includes(word);
+// الأبجدية العربية بالترتيب
+const ARABIC_ALPHA = 'ابتثجحخدذرزسشصضطظعغفقكلمنهوي';
+
+function validateWord(word) {
+  // ٥ حروف عربية بالضبط
+  if (!word || word.length !== 5)
+    return "الكلمة لازم تكون ٥ حروف";
+
+  // عربي فقط — لا أرقام ولا إنجليزي ولا رموز
+  if (!/^[؀-ۿ]+$/.test(word))
+    return "الكلمة لازم تكون حروف عربية فقط";
+
+  // ما يتكرر نفس الحرف أكثر من مرتين
+  for (const ch of word) {
+    if ([...word].filter(c => c === ch).length > 2)
+      return "ما يصح تكرار نفس الحرف أكثر من ٣ مرات";
+  }
+
+  // ما تكون ٣ حروف متتالية في الأبجدية
+  for (let i = 0; i <= word.length - 3; i++) {
+    const i1 = ARABIC_ALPHA.indexOf(word[i]);
+    const i2 = ARABIC_ALPHA.indexOf(word[i+1]);
+    const i3 = ARABIC_ALPHA.indexOf(word[i+2]);
+    if (i1 !== -1 && i2 === i1+1 && i3 === i2+1)
+      return "ما يصح ٣ حروف متتالية من الأبجدية";
+  }
+
+  return null; // صحيحة
 }
 
 export default function MultiSecretWord({ onWordSubmit }) {
@@ -15,8 +39,8 @@ export default function MultiSecretWord({ onWordSubmit }) {
   const [submitted, setSubmitted] = useState(false);
 
   const handleSubmit = () => {
-    if (word.length !== 5) { setError("الكلمة لازم تكون ٥ حروف"); return; }
-    if (!isValidWord(word)) { setError("الكلمة مو موجودة في القاموس"); return; }
+    const err = validateWord(word);
+    if (err) { setError(err); return; }
     setError("");
     setSubmitted(true);
     onWordSubmit(word);
