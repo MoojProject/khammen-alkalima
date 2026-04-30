@@ -34,58 +34,67 @@ export default function MultiSecretWord({ onWordSubmit }) {
       <Header centerCurrent="لاعبين" onHowToPlay={() => {}} onContact={() => {}} />
       <div className="mc2-shell">
 
-        <div className="mc2-imgSide">
-          <div className="mc2-imgOverlay">
-            <img src={playersImg} alt="players" className="mc2-heroImg" />
-            <div className="mc2-imgCaption">
-              <p className="mc2-imgTitle">اختر كلمة سرية</p>
-              <p className="mc2-imgSub">كلمة من ٥ حروف — صاحبك راح يخمنها!</p>
-            </div>
-          </div>
-        </div>
+        {/* يسار: الفورم */}
+        <div className="sw-form-side">
+          <div className="sw-dots-deco sw-dots-deco--tl" />
+          <div className="sw-dots-deco sw-dots-deco--br" />
 
-        <div className="mc2-secretSide">
           {!submitted ? (
             <>
-              <h1 className="mc2-secretTitle">اختر كلمة لصاحبك</h1>
-              <div className="mc2-secretCard">
-                <p className="mc2-secretHint">اكتب كلمة سرية من ٥ حروف — صاحبك راح يخمنها</p>
-                <div className="mc2-wordInputWrap">
-                  <input
-                    className="mc2-wordInput"
-                    placeholder="_ _ _ _ _"
-                    maxLength={5}
-                    value={word}
-                    onChange={handleChange}
-                    onKeyDown={(e) => e.key === "Enter" && handleSubmit()}
-                    autoFocus
-                  />
-                </div>
-                <div className="mc2-letterDots">
-                  {[0,1,2,3,4].map(i => (
-                    <span key={i} className={`mc2-letterDot${i < word.length ? " mc2-letterDot--filled" : ""}`} />
-                  ))}
-                </div>
-                {error && <p className="mc2-fieldError">{error}</p>}
-                <button className="mc2-confirmBtn" onClick={handleSubmit} disabled={word.length !== 5}>
-                  تأكيد الكلمة
-                </button>
+              <h1 className="sw-title">
+                اختر كلمة لصاحبك
+                <span className="material-icons sw-title-icon">edit</span>
+              </h1>
+              <p className="sw-hint">اكتب كلمة سرية من ٥ حروف — صاحبك راح يخمنها</p>
+
+              <div className="sw-input-wrap">
+                <span className="material-icons sw-lock">lock</span>
+                <input
+                  className="sw-input"
+                  placeholder="— — — — —"
+                  maxLength={5}
+                  value={word}
+                  onChange={handleChange}
+                  onKeyDown={(e) => e.key === "Enter" && handleSubmit()}
+                  autoFocus
+                />
               </div>
+
+              <div className="sw-letter-dots">
+                {[0,1,2,3,4].map(i => (
+                  <span key={i} className={`sw-ldot${i < word.length ? " sw-ldot--on" : ""}`} />
+                ))}
+              </div>
+
+              {error && <p className="sw-error">{error}</p>}
+
+              <button className="sw-confirm-btn" onClick={handleSubmit} disabled={word.length !== 5}>
+                <span className="material-icons">lock</span>
+                تأكيد الكلمة
+              </button>
             </>
           ) : (
             <>
-              <h1 className="mc2-secretTitle">جاهز!</h1>
-              <div className="mc2-secretCard">
-                <div className="mc2-submittedBox">
-                  <p className="mc2-submittedText">حفظنا كلمتك، بانتظار صاحبك...</p>
-                </div>
-                <div className="mc2-dotsWrap" style={{ justifyContent: "center", marginTop: 8 }}>
-                  <span className="mc2-dot" /><span className="mc2-dot" /><span className="mc2-dot" />
-                </div>
-                <p className="mc2-waitNote" style={{ textAlign: "center" }}>لما صاحبك يحط كلمته تبدأ اللعبة تلقائياً</p>
+              <div className="sw-check-icon">
+                <span className="material-icons">check</span>
               </div>
+              <h1 className="sw-title">جاهز!</h1>
+              <div className="sw-done-box">حفظنا كلمتك، بانتظار صاحبك...</div>
+              <div className="sw-letter-dots">
+                <span className="sw-ldot sw-ldot--on" />
+                <span className="sw-ldot sw-ldot--pulse" />
+                <span className="sw-ldot sw-ldot--pulse sw-ldot--pulse2" />
+              </div>
+              <p className="sw-hint">لما صاحبك يحط كلمته تبدأ اللعبة تلقائياً</p>
             </>
           )}
+        </div>
+
+        {/* يمين: الصورة */}
+        <div className="sw-img-side">
+          <img src={playersImg} alt="players" className="sw-img" />
+          <p className="sw-img-title">اختر كلمة سرية</p>
+          <p className="sw-img-sub">كلمة من ٥ حروف — صاحبك راح يخمنها!</p>
         </div>
 
       </div>
