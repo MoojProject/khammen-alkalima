@@ -1,0 +1,546 @@
+@import url("https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap");
+@import url("https://fonts.googleapis.com/icon?family=Material+Icons");
+@import url("https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700;800&display=swap");
+
+/* =========================
+   Base / Reset
+========================= */
+:root{
+  --font: "Cairo", sans-serif, "Tajawal", sans-serif;
+  --text: #4b2cb0;
+  --muted: #6b7280;
+  --border: #e5e7eb;
+  --primary: #6b4eff;
+  --shadow: 0 10px 30px rgba(0,0,0,0.08);
+}
+
+*,
+*::before,
+*::after{
+  box-sizing: border-box;
+}
+
+html{
+  -webkit-text-size-adjust: 100%;
+}
+
+body{
+  font-family: var(--font);
+  margin: 0;
+  color: var(--text);
+  direction: rtl;
+  text-align: center;
+}
+
+a{ text-decoration: none; }
+i, a{ color:#767575; }
+i:hover{ cursor: pointer; }
+
+img{
+  max-width: 1010%;
+  height: auto;
+  display: block;
+}
+
+/* =========================
+   Layout
+========================= */
+.container{
+  position: relative;
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  padding: 16px;
+}
+
+/* =========================
+   Title
+========================= */
+.title{ margin-top: -28px; }
+.title p{ color:#bab3b3; }
+.title i{ font-size: 26px; }
+.title i:hover{ color: rgb(160, 55, 201); }
+
+.title hr{
+  position: relative;
+  bottom: 15px;
+  width: clamp(240px, 60vw, 400px);
+  opacity: 0.3;
+  border: none;
+  border-top: 1px solid #ddd;
+}
+
+/* =========================
+   Alert
+========================= */
+#alerting{
+  visibility: hidden;
+  z-index: 2;
+  bottom: 5px;
+  font-size: 1rem;
+  padding: 10px 12px;
+  border-radius: 6px;
+  background-color: white;
+  color: rgb(172, 46, 230);
+  width: min(160px, 92vw);
+  margin-inline: auto;
+}
+
+/* =========================
+   Panels
+========================= */
+.panel{
+  padding: 12px;
+  background-color: white;
+  color: black;
+  border-radius: 6px;
+  z-index: 2;
+  width: min(350px, 92vw);
+  min-height: 350px;
+  height: auto;
+  box-shadow: var(--shadow);
+}
+
+.panel p{ font-size: 1.05rem; }
+.panel #timer, .panel #status{
+  font-size: clamp(1.6rem, 4.5vw, 2.2rem);
+  font-weight: 700;
+}
+
+.info_panel{
+  display: none;
+  padding: 12px;
+  border-radius: 6px;
+  background-color: white;
+  color: #000;
+  z-index: 2;
+  width: min(350px, 92vw);
+  min-height: 400px;
+  height: auto;
+  box-shadow: var(--shadow);
+}
+
+.info_panel .title_info{ font-size: 1.05rem; }
+.close{ float: left; }
+
+/* =========================
+   Game Background
+========================= */
+.game-page{
+  min-height: 102vh;
+  background-image: url("./assets/background.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+ }
+
+/* =========================
+   Game Board
+========================= */
+.GameBoard{
+  margin-top: -42px;
+  position: relative;
+  display: grid;
+  grid-template-rows: repeat(6, auto);
+  justify-items: center;
+}
+
+.GameBoard input{
+  width: clamp(34px, 10vw, 46px);
+  height: clamp(34px, 10vw, 46px);
+  background-color: #fff;
+  border: 2px solid #7a61ff;
+  border-radius: 10px;
+  color: #4f1b9d;
+  font-size: clamp(18px, 4.2vw, 26px);
+  font-weight: 700;
+  margin: clamp(3px, 1.2vw, 6px);
+  /* caret-color: transparent; */
+  text-align: center;
+}
+
+.GameBoard input:focus{
+  outline: none;
+  border-color: #5b3fc4;
+  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.25);
+}
+
+/* =========================
+   Header
+========================= */
+.main-header{
+  background: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 40px;
+  border-bottom: 1px solid var(--border);
+  direction: rtl;
+  gap: 16px;
+}
+
+.header-left{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.logo-box{
+  width: 44px;
+  height: 44px;
+  border-radius: 999px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 0;
+}
+
+.logo-img{
+  width: clamp(120px, 22vw, 200px);
+  height: auto;
+}
+
+.header-center{
+  font-size: clamp(14px, 2.8vw, 20px);
+  color: var(--muted);
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.header-center .current{
+  color: #374151;
+  font-weight: 700;
+}
+
+.header-right{
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.header-right a{
+  font-size: clamp(16px, 3vw, 20px);
+  color: #374151;
+}
+
+.header-right a:hover{ color: var(--primary); }
+
+/* =========================
+   Keyboard (FINAL FIX)
+========================= */
+.keyboard-container{
+  background: #ebe7fb;
+  margin: 12px auto;
+  border-radius: 16px;
+  width: min(560px, 100%);
+  box-shadow: var(--shadow);
+
+  /* مهم للآيفون (safe-area) */
+  padding-top: 12px;
+  padding-bottom: 12px;
+  padding-left: calc(12px + env(safe-area-inset-left));
+  padding-right: calc(12px + env(safe-area-inset-right));
+
+  /* لا تقص الأطراف */
+  overflow: visible;
+}
+
+/* صفوف الكيبورد Grid (لا قص ولا خروج) */
+.keyboard-row{
+  width: 100%;
+  display: grid;
+  gap: 6px;
+  margin-bottom: 8px;
+}
+
+/* نفس عدد الحروف اللي عندك بالـ React */
+.keyboard-row.row-1{ grid-template-columns: repeat(12, minmax(0, 1fr)); }
+.keyboard-row.row-2{ grid-template-columns: repeat(11, minmax(0, 1fr)); padding-inline: 10px; }
+.keyboard-row.row-3{ grid-template-columns: repeat(12, minmax(0, 1fr)); }
+
+/* زر الحرف: يتوزع + الحرف بالوسط مضبوط */
+.key{
+  width: 100%;
+  min-width: 0;
+  height: 44px;
+
+  background: white;
+  border-radius: 10px;
+  border: none;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-family: var(--font);
+  font-size: clamp(14px, 3.8vw, 20px);
+  font-weight: 700;
+  line-height: 1;
+  padding: 0;
+
+  color: #111827;
+  cursor: pointer;
+  transition: background 0.15s ease, transform 0.1s ease;
+
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+}
+
+.key:hover{ background: #f3f4f6; }
+.key:active{ transform: scale(0.97); }
+
+.keyboard-actions{
+    font-family: "Tajawal", sans-serif;
+
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.action-key{
+  font-family: "Tajawal", sans-serif;
+
+  height: 44px;
+  border-radius: 10px;
+  border: none;
+  background: rgb(255, 255, 255);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  font-weight: 800;
+  line-height: 1;
+
+  cursor: pointer;
+}
+
+.action-key.primary{ background: var(--primary); color: white; }
+
+.key.green{ background-color: #22c55e !important; color: white; }
+.key.yellow{ background-color: #facc15 !important; color: white; }
+.key.gray{ background-color: #9ca3af !important; color: white; }
+
+/* =========================
+   Hero
+========================= */
+.hero{
+  background-repeat: no-repeat;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  font-family: var(--font);
+  color: rgb(126, 65, 223);
+  min-height: 94vh;
+  padding: 24px 16px;
+}
+
+.hero__content{ text-align: center; }
+
+.contact{
+  background: white;
+  text-align: center;
+}
+
+.logo1-img{
+  width: clamp(220px, 70vw, 460px);
+  margin-bottom: 40px;
+}
+
+.hero__title{
+  font-size: clamp(26px, 6vw, 42px);
+  color: #191919;
+  margin-bottom: 28px;
+  font-weight: 800;
+  line-height: 1.2;
+}
+
+.hero__actions{
+  display: flex;
+  gap: 18px;
+  justify-content: center;
+  margin-top: -28px;
+  flex-wrap: wrap;
+}
+
+.btn{
+  padding: 12px 32px;
+  border-radius: 999px;
+  font-weight: 700;
+  text-decoration: none;
+  border: 2px solid #6b4bbf;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 180px;
+}
+
+.btn--solid{
+  background: #6b4bbf;
+  color: white;
+}
+
+.btn--ghost{
+  background: #6b4bbf;
+  color: white;
+}
+
+/* =========================
+   Footer Contact
+========================= */
+.footer-contact{
+  background: white;
+  padding: 60px 20px 20px;
+  font-family: var(--font);
+}
+
+.footer-contact__content{
+  max-width: 1000px;
+  margin: auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  align-items: center;
+}
+
+.footer-brand{
+  text-align: center;
+}
+
+.footer-brand img{
+  width: clamp(220px, 60vw, 460px);
+  margin-bottom: 10px;
+}
+
+.footer-brand span{
+  display: block;
+  font-size: 22px;
+  font-weight: 700;
+  color: #7b4bd6;
+}
+
+.footer-form h4{ margin-bottom: 16px; }
+
+.footer-form label{
+  display: block;
+  font-size: 14px;
+  margin-top: 10px;
+  margin-bottom: 4px;
+}
+
+.footer-form input,
+.footer-form textarea{
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  font-family: inherit;
+  text-align: right;
+}
+
+.footer-form textarea{
+  height: 90px;
+  resize: none;
+}
+
+.footer-form button{
+  margin-top: 16px;
+  background: #7b4bd6;
+  color: white;
+  border: none;
+  padding: 10px 12px;
+  border-radius: 8px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.footer-copy{
+  margin-top: 40px;
+  padding-top: 16px;
+  border-top: 1px solid #eee;
+  text-align: center;
+  font-size: 14px;
+  color: #666;
+}
+
+/* =========================
+   Responsive
+========================= */
+
+@media (max-width: 768px){
+  .game-page,
+  .hero{
+    background-attachment: scroll;
+  }
+
+  .container{
+    padding: 12px;
+  }
+
+  .main-header{
+    padding: 0px 10px 14px;
+  }
+
+  /* تحريك "الرئيسية > قدها لحالك" لليسار */
+  .header-center{
+     text-align: left;
+    margin-right: auto;       /* RTL: يدفعها لليسار */
+    margin-left: 0;
+    padding-left: 8px;
+    font-size: 10px;
+  }
+
+  .header-right{
+    gap: 12px;
+  }
+
+  .header-right a{
+    font-size: 10px;
+  }
+
+  .hero__actions{
+    flex-direction: column;
+    margin-top: 0;
+  }
+.title h1{
+ 
+    font-size: clamp(22px, 7vw, 32px);
+  } 
+  .btn{
+    width: 100%;
+    max-width: 280px;
+    margin-inline: auto;
+  }
+
+  .key{
+    height: 40px;
+    border-radius: 8px;
+  }
+
+  .action-key{
+    height: 40px;
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 420px){
+  .title{ margin-top: -16px; }
+  .GameBoard{ margin-top: -24px; }
+}
+
+/* احترام تقليل الحركة */
+@media (prefers-reduced-motion: reduce){
+  .key{ transition: none; }
+}

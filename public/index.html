@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ar">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>خمن الكلمة </title>
+
+
+    <!-- خط Cairo -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+  <!-- direction: rtl; /* مهم جدًا للعربي */ -->
+   
+
+
+
+
+    <!-- أيقونات Material Icons -->
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+    />
+  </head>
+<body dir="rtl">
+  <div id="root"></div>
+
+  <!-- ✅ Netlify Hidden Form (لا يظهر بالموقع) -->
+  <form
+    name="contact"
+    method="POST"
+    data-netlify="true"
+    hidden
+  >
+    <input type="hidden" name="form-name" value="contact" />
+    <input type="email" name="email" />
+    <textarea name="message"></textarea>
+  </form>
+</body>
+
+</html>
