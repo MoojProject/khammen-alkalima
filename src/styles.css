@@ -58,7 +58,7 @@ img{
 /* =========================
    Title
 ========================= */
-.title{ margin-top: -28px; }
+.title{ margin-top: 16px; }
 .title p{ color:#bab3b3; }
 .title i{ font-size: 26px; }
 .title i:hover{ color: rgb(160, 55, 201); }
@@ -97,7 +97,7 @@ img{
   color: black;
   border-radius: 6px;
   z-index: 2;
-  width: min(350px, 92vw);
+  width: min(320px, 85vw);
   min-height: 350px;
   height: auto;
   box-shadow: var(--shadow);
@@ -115,11 +115,15 @@ img{
   border-radius: 6px;
   background-color: white;
   color: #000;
-  z-index: 2;
-  width: min(350px, 92vw);
-  min-height: 400px;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1000;
+  width: min(320px, 85vw);
+  min-height: auto;
   height: auto;
-  box-shadow: var(--shadow);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.2);
 }
 
 .info_panel .title_info{ font-size: 1.05rem; }
@@ -536,7 +540,7 @@ img{
 }
 
 @media (max-width: 420px){
-  .title{ margin-top: -16px; }
+  .title{ margin-top: 8px; }
   .GameBoard{ margin-top: -24px; }
 }
 
