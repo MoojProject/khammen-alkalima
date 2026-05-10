@@ -4,6 +4,7 @@ import Header from "../components/Header.jsx";
 import Board from "../components/Board.jsx";
 import Keyboard from "../components/Keyboard.jsx";
 import Panels from "../components/Panels.jsx";
+/* eslint-disable react-hooks/exhaustive-deps */
 
 const not_exist_color = "#aaaaaeff";
 const wrong_position_color = "#e3d284ff";
