@@ -6,7 +6,7 @@ import MultiSecretWord from "./MultiSecretWord.jsx";
 import MultiGame       from "./MultiGame.jsx";
 import MultiResult     from "./MultiResult.jsx";
 
-const SERVER_URL = "http://localhost:3001";
+const SERVER_URL = "https://wordl-server.onrender.com";
 
 export default function MultiChallenge() {
   const socketRef = useRef(null);
