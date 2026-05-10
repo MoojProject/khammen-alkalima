@@ -282,7 +282,7 @@ const restartGame = React.useCallback(() => {
     }
     document.addEventListener("click", onDocClick);
     return () => document.removeEventListener("click", onDocClick);
-  }, [restartGame]);
+  }, []);
 
   // keyboard click handlers
   function handleLetterClick(letter) {

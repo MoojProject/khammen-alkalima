@@ -131,8 +131,7 @@ export default function MultiGame({ secretWord, socket, isMultiplayer = false, o
 
     window.addEventListener("keydown", onKeyDown);
     return () => window.removeEventListener("keydown", onKeyDown);
-  }, [gameStatus, pos, row, rowWord, secretWord, evaluations, userWords, wrongLetters, socket]);
-
+}, [gameStatus, pos, row, rowWord, secretWord, evaluations, userWords, wrongLetters, socket, isMultiplayer]);
   useEffect(() => {
     function onDocClick(e) {
       if (!(e.target instanceof HTMLElement)) return;
