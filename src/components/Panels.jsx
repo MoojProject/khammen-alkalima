@@ -37,7 +37,7 @@ export default function Panels({
 
   const statusText = useMemo(() => {
     if (gameStatus === "WINNER") return "أحسنت 🎉";
-    if (gameStatus === "LOSER")  return "حاول المرة القادمة";
+    if (gameStatus === "LOSER") return "حاول المرة القادمة";
     return "";
   }, [gameStatus]);
 
@@ -115,16 +115,37 @@ export default function Panels({
       </div>
 
       <div className="info_panel" style={{ display: showInfoPanel ? "block" : "none" }}>
-        <i
-          className="close material-icons"
-          onClick={() => setShowInfoPanel(false)}
-        >
-          &#xe5cd;
-        </i>
-        <p className="title_info">Wordle النسخة العربية من اللعبة المشهورة</p>
-        <br />
-        <p>لتبسيط اللعب جرب فقط أسماء وصفات حيث أن الأفعال والضمائر مستبعدة</p>
-        <p>جميع علامات التشكيل مستبعدة</p>
+        <i className="close material-icons" onClick={() => setShowInfoPanel(false)}>&#xe5cd;</i>
+
+        <div style={{ textAlign: "center", padding: "8px 0 16px" }}>
+          <div style={{
+            width: 52, height: 52, borderRadius: 12,
+            background: "#4b2cb0", color: "#fff",
+            display: "flex", alignItems: "center", justifyContent: "center",
+            fontSize: 22, fontWeight: 800, margin: "0 auto 16px",
+            fontFamily: "Cairo, sans-serif"
+          }}>ك</div>
+
+          <p style={{ fontSize: 18, fontWeight: 800, color: "#2d1a6e", margin: "0 0 12px", fontFamily: "Cairo, sans-serif" }}>
+            مرحبًا بك في خمن الكلمة
+          </p>
+
+          <p style={{ fontSize: 13, color: "#7c6caa", margin: "0 0 6px", fontFamily: "Cairo, sans-serif" }}>
+            لديك ٦ محاولات لتخمين كلمة من ٥ أحرف.
+          </p>
+          <p style={{ fontSize: 13, color: "#7c6caa", margin: "0 0 20px", fontFamily: "Cairo, sans-serif" }}>
+            اكتب تخمينك، ثم اضغط إدخال لمعرفة النتيجة.
+          </p>
+
+          <button onClick={() => setShowInfoPanel(false)} style={{
+            width: "100%", padding: "12px", background: "#4b2cb0",
+            color: "#fff", border: "none", borderRadius: 10,
+            fontFamily: "Cairo, sans-serif", fontSize: 15, fontWeight: 700,
+            cursor: "pointer", marginBottom: 10
+          }}>
+            ابدأ اللعب
+          </button>
+        </div>
       </div>
     </>
   );
