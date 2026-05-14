@@ -145,6 +145,11 @@ export default function Panels({
           }}>
             ابدأ اللعب
           </button>
+
+          <p style={{ fontSize: 12, color: "#4b2cb0", fontWeight: 700, fontFamily: "Cairo, sans-serif", cursor: "pointer" }}
+            onClick={() => setShowInfoPanel(false)}>
+            عرض طريقة اللعب كاملة
+          </p>
         </div>
       </div>
     </>
