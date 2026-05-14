@@ -2,6 +2,7 @@ import { Routes, Route, Navigate } from "react-router-dom";
 import Home from "./pages/Home";
 import SingleChallenge from "./pages/SingleChallenge";
 import MultiChallenge from "./pages/MultiChallenge";
+import HowToPlay from "./pages/HowToPlay";
   
 export default function App() {
   return (
@@ -10,6 +11,7 @@ export default function App() {
       <Route path="/single" element={<SingleChallenge />} />
       
       <Route path="/multi" element={<MultiChallenge />} />
+      <Route path="/how-to-play" element={<HowToPlay />} />
 
       <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>

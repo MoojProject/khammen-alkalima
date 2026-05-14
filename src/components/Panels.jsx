@@ -1,4 +1,5 @@
 import React, { useEffect, useMemo, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 // function timeLeftString() {
 //   const now = new Date();
@@ -33,6 +34,7 @@ export default function Panels({
   isMultiplayer = false,
   opponentFinished = false,
 }) {
+  const navigate = useNavigate();
   const [timer, setTimer] = useState("00:00:00");
 
   const statusText = useMemo(() => {
@@ -147,7 +149,7 @@ export default function Panels({
           </button>
 
           <p style={{ fontSize: 12, color: "#4b2cb0", fontWeight: 700, fontFamily: "Cairo, sans-serif", cursor: "pointer" }}
-            onClick={() => setShowInfoPanel(false)}>
+            onClick={() => navigate("/how-to-play")}>
             عرض طريقة اللعب كاملة
           </p>
         </div>
