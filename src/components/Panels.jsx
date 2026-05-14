@@ -1,17 +1,28 @@
 import React, { useEffect, useMemo, useState } from "react";
 
+// function timeLeftString() {
+//   const now = new Date();
+//   const INTERVAL = 5 * 60 * 1000;
+//   const end = new Date(Math.ceil(now.getTime() / INTERVAL) * INTERVAL);
+//   const diffMs = Math.max(0, end - now);
+//   const totalSec = Math.floor(diffMs / 1000);
+//   const h = String(Math.floor(totalSec / 3600)).padStart(2, "0");
+//   const m = String(Math.floor((totalSec % 3600) / 60)).padStart(2, "0");
+//   const s = String(totalSec % 60).padStart(2, "0");
+//   return `${h}:${m}:${s}`;
+// }
 function timeLeftString() {
   const now = new Date();
-  const INTERVAL = 5 * 60 * 1000;
-  const end = new Date(Math.ceil(now.getTime() / INTERVAL) * INTERVAL);
-  const diffMs = Math.max(0, end - now);
+  const tomorrow = new Date(now);
+  tomorrow.setDate(tomorrow.getDate() + 1);
+  tomorrow.setHours(0, 0, 0, 0);
+  const diffMs = Math.max(0, tomorrow - now);
   const totalSec = Math.floor(diffMs / 1000);
   const h = String(Math.floor(totalSec / 3600)).padStart(2, "0");
   const m = String(Math.floor((totalSec % 3600) / 60)).padStart(2, "0");
   const s = String(totalSec % 60).padStart(2, "0");
   return `${h}:${m}:${s}`;
 }
-
 export default function Panels({
   showResultPanel,
   showInfoPanel,
