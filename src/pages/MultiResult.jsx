@@ -101,16 +101,7 @@ export default function MultiResult({ result, onRematch, waitingRematch }) {
 
           {/* الكأس داخل دائرة */}
           <div className="result-trophy-circle">
-            <svg viewBox="0 0 100 90" width="110" xmlns="http://www.w3.org/2000/svg">
-              <rect x="38" y="78" width="24" height="7" rx="2" fill="#c4b8f0"/>
-              <rect x="30" y="83" width="40" height="8" rx="3" fill="#b0a0e8"/>
-              <path d="M20 10 Q10 10 10 28 Q10 46 28 54 L28 72 Q28 76 32 76 L68 76 Q72 76 72 72 L72 54 Q90 46 90 28 Q90 10 80 10 Z" fill="#c8b8f8"/>
-              <path d="M30 10 L70 10 L70 65 Q70 73 62 73 L38 73 Q30 73 30 65 Z" fill="#ddd0fc"/>
-              <path d="M10 18 Q10 40 28 50 L28 38 Q15 32 15 18 Z" fill="#b0a0e8"/>
-              <path d="M90 18 Q90 40 72 50 L72 38 Q85 32 85 18 Z" fill="#b0a0e8"/>
-              <path d="M38 35 L42 48 L50 40 L58 48 L62 35 L54 42 Z" fill="#7c5cbf" opacity="0.9"/>
-              <ellipse cx="50" cy="10" rx="20" ry="4" fill="#e8dcff" opacity="0.5"/>
-            </svg>
+            <span className="material-icons" style={{fontSize:90,color:'#7c5cbf'}}>emoji_events</span>
           </div>
 
           {/* النص الكبير */}
